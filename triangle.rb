@@ -13,8 +13,10 @@
 # and
 #   about_triangle_project_2.rb
 #
-def triangle(a, b, c)
-  # WRITE THIS CODE
+def triangle(*sides)
+  return(:equilateral) if sides.combination(2).all? {|a,b| a == b}
+  return(:isosceles) if sides.combination(2).any? {|a,b| a == b}
+  return(:scalene) if sides.combination(2).none? {|a,b| a == b}
 end
 
 # Error class used in part 2.  No need to change this code.
