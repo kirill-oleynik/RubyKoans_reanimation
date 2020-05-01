@@ -12,10 +12,15 @@
 #   about_triangle_project.rb
 # and
 #   about_triangle_project_2.rb
-#
-def triangle(a, b, c)
-  # WRITE THIS CODE
+def triangle(*sides)
+  sides.sort!
+  raise TriangleError if sides.any? {|side| side.zero? || side.negative?}
+  raise TriangleError if sides[2] >= sides[1] + sides[0]
+  return :equilateral if sides.uniq.length  == 1
+  return :isosceles if sides.uniq.length  == 2
+  return :scalene
 end
+# end
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
